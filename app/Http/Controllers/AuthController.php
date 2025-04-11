@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -30,12 +31,12 @@ class AuthController extends Controller
             'password.max' => 'Senha deve ter no máximo 12 caracteres',
         ]);
 
-        echo $request->input('email');
-        echo $request->input('password');
-        
-        $email = $request->input('email');
-        $password = $request->input('password');
-
-        echo 'OK!';
+        try {
+            DB::connection('mysql')->getPdo();
+       
+    }catch (\PDOException $e) {
+        echo "Erro ao conectar ao banco de dados: " . $e->getMessage();
+}
+echo "Conectado ao banco de dados com sucesso!";
     }
 }
