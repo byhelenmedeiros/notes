@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\MainController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-   echo 'Hello World';
-});
-
-route::get("/main", [MainController::class, 'index']);
+// Auth routes
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/loginSubmit', [AuthController::class, 'loginSubmit'])->name('login.post');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
